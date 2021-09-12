@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Cat from './Cat';
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
-      <Cat></Cat>
+      <Text></Text>
       <StatusBar style="auto" />
+      <View style  = {styles.container1}>       <img src={require('./Picutures/logonew.png')} />
+</View>
     </View>
   );
 }
@@ -15,8 +16,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2930',
+    backgroundColor: '#9EA4B2',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
 });
