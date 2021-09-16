@@ -21,7 +21,7 @@ export default function Login(props) {
         style={{height: 40}}
         placeholder="Enter your email"
         onChangeText={text => setEmail(text)}
-        defaultValue={email}
+        defaultValue={email} 
         textContentType = 'emailAddress'
 
 

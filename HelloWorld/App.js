@@ -9,7 +9,6 @@ export default function App() {
   if (currentView == "Welcome"){
     return (
       <View style={styles.container}> 
-        <Text>{currentView}</Text>
         <StatusBar style="auto" />
         <View style  = {styles.container1}>         <img src={require('./Picutures/logonew.png')} /> 
         <View style  = {styles.container2}> <img src={require('./Picutures/leaf.png')} />
@@ -32,7 +31,7 @@ export default function App() {
     );
   }
   if (currentView == 'Login'){
-    return(<Login changeV = {setView}>
+    return(<Login changeView = {setView}>
     </Login>)
   }
   }
