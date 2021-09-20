@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,Button,TouchableOpacity, Text, View, TextInput, } from 'react-native';
+import { StyleSheet,Button, Text, View, TextInput, Pressable, } from 'react-native';
 import React, { useState } from 'react';
 
 
@@ -13,7 +13,8 @@ export default function Login(props) {
     <View style={styles.container}>
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
 
-      <Text style={styles.Signintext}>Sign In</Text>
+      <View style={styles.Signincontainer}><Text style={styles.Signintext}>Sign In</Text></View>
+      <View style={styles.infocontainer}>
       <View style={styles.email}>
       <TextInput
         style={{ height: 40 }}
@@ -22,14 +23,6 @@ export default function Login(props) {
         defaultValue={email}
         textContentType='emailAddress' />
       </View>
-      <View
-      style={{
-        borderBottomWidth: 1,
-        borderBottomColor: 'black',
-        width: 210,
-        top: 100,
-     }}
-    />
       <View style={styles.password}>
       <TextInput
         style={{ height: 40 }}
@@ -39,19 +32,11 @@ export default function Login(props) {
         textContentType='password'
         secureTextEntry={true} />
         </View>
-        <View
-      style={{
-        borderBottomWidth: 1,
-        borderBottomColor: 'black',
-        width: 210,
-        top: 100,
-     }}
-    />
+      </View>
       <View style={styles.button1}>
-        <Button
-        title="Login"
-        color='#7C9A92'
-        onPress={() => { props.changeView('Welcome'); } } />
+      <Pressable style={styles.buttontest} onPress={() => { props.changeView('Menu'); } }>
+        <Text style={styles.Buttontext}>Login</Text>
+      </Pressable>
       </View>
       <View style={styles.image1}><img src={require('./Pictures/leaf.png')} /></View>
 
@@ -76,29 +61,52 @@ const styles = StyleSheet.create({
       left: -130,
     },
 
+    Signincontainer: {
+      width:'70%',
+      alignItems:'left',
+    },
+
     Signintext: {
-      color:'#fff',
       fontSize: 30,
+      color:'#fff',
+      fontFamily: 'Georgia',
+
+    },
+
+    infocontainer: {
+      marginTop:100,
     },
 
     email: {
-      top:100,
-      width: 200,
+      width: 210,
+      borderBottomWidth:1,
     },
 
     password: {
-      width:200,
-      top:100,
+      width:210,
+      borderBottomWidth:1,
     },
 
     
     button1: {
       top: 190,
-      width: 175,
+      width: '65%',
       borderRadius:5,
       paddingVertical: 5,
       paddingHorizontal : 10,
+      fontSize: 54,      
 
+    },
+
+    buttontest: {
+      width: '100%',
+      backgroundColor:'#7C9A92',
+      textAlign:'center',
+    },
+
+    Buttontext: {
+      fontSize: 24,
+      color:'#fff',
     },
 
     image1: {

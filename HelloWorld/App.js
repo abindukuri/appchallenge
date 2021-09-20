@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet,Button,TouchableOpacity, Text, View, Font} from 'react-native';
 import Login from './Login';
+import Menu from './Menu';
 
 
 export default function App() {
@@ -18,7 +19,6 @@ export default function App() {
           onPress={()=> {setView('Login')}}
           title = "Log In With Email"
           color = "7C9A92"
-  
             />  
           
         </View>
@@ -34,7 +34,13 @@ export default function App() {
     return(<Login changeView = {setView}>
     </Login>)
   }
+
+  if (currentView == 'Menu'){
+    return(<Menu changeView = {setView}>
+    </Menu>)
   }
+  }
+
   
 
 const styles = StyleSheet.create({
