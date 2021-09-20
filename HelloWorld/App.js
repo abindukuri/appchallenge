@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet,Button,TouchableOpacity, Text, View} from 'react-native';
+import { StyleSheet,Button,TouchableOpacity, Text, View, Font} from 'react-native';
 import Login from './Login';
 
 
@@ -10,8 +10,8 @@ export default function App() {
     return (
       <View style={styles.container}> 
         <StatusBar style="auto" />
-        <View style  = {styles.container1}>         <img src={require('./Picutures/logonew.png')} /> 
-        <View style  = {styles.container2}> <img src={require('./Picutures/leaf.png')} />
+        <View style  = {styles.container1}> <img src={require('./Pictures/logonew.png')} /> 
+        <View style  = {styles.container2}> <img src={require('./Pictures/leaf.png')} />
         
         <View style = {styles.button}>
           <Button
