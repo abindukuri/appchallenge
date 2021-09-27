@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,Button, Text, View, TextInput, Pressable, } from 'react-native';
+import { StyleSheet,Button, Text, View, TextInput, Pressable, Image} from 'react-native';
 import React, { useState } from 'react';
 
 
@@ -10,11 +10,15 @@ export default function Login(props) {
     <View style={styles.container}>
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
     <Pressable style={styles.buttonprofile} onPress={() => { props.changeView('Welcome'); } }>
-       <View style={styles.profileimg}> <img src={require('./Pictures/Profilepic.jpg')} /></View>
+       <View>
+            <Image style={styles.img} source={require('./Pictures/Profilepic.jpg')} />
+        </View>
     </Pressable>
+    <View style={styles.contentcontainer}>
     <View style={styles.Welcomecontainer}><Text style={styles.Welcometext}>Welcome Back, John</Text></View> 
     <View style = {styles.subtitlecontainer}> <Text style = {styles.subtitle}> Speech Practice for Today! </Text>  </View>
     {/*WORDS*/}
+    <View style={styles.buttonscontainer}>
     <View style={styles.Words}>
     <Pressable style={styles.Wordcontainter} onPress={() => { props.changeView('Welcome'); } }>
        <View style={styles.Wordimg}> <img src={require('./Pictures/Wordsicon.png')} /></View>
@@ -44,6 +48,8 @@ export default function Login(props) {
     <Text style={styles.questionstext}>Questions</Text>
     </View>
     </View>
+    </View>
+    </View>
 
   );
 }
@@ -52,34 +58,49 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#9EA4B2',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'flex-end',
     },
 
     image: {
         backgroundColor:'#9EA4B2',
         width: 69,
         length: 59,
-        top:-130,
+        top: '7%',
+        position:'absolute',
 
     },
-   
+
+    img:{
+        height:35,
+        width:35,
+        borderRadius:20,
+    },
+    
     buttonprofile: {
         width:35,
         height: 35,
+        left:'80%',
+        position:'absolute',
+        top:'10%',
     },
 
     profileimg: {
         width:35,
         height:35,
-        top: -164,
-        left:130,
+
     },
 
+
+    contentcontainer:{
+        width:'85%',
+        height:'80%',
+    },
 
     Welcomecontainer: {
         width:'90%',
         alignItems:'left',
-        top:-140,
+
+
       },
 
   
@@ -100,36 +121,44 @@ const styles = StyleSheet.create({
   
       },
 
+      buttonscontainer: {
+        width:'100%',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop:'5%',
+
+      },
+
       Words: {
           width:62,
           height:84,
           color:'#000',
-          left:-130,
-          top:-110,
+        //   left:-130,
+        //   top:-110,
 
       },
       phrases: {
         width:62,
         height:84,
         color:'#000',
-        top:-194,
-        left:-50,
+        // top:-194,
+        // left:-50,
 
     },
     sentences: {
         width:62,
         height:84,
         color:'#000',
-        top: -278,
-        left:30,
+        // top: -278,
+        // left:30,
     },
 
     questions: {
         width:62,
         height:84,
         color:'#000',
-        top: -362,
-        left:110,
+        // top: -362,
+        // left:110,
     },
 
       Wordcontainter: {
@@ -220,12 +249,13 @@ const styles = StyleSheet.create({
         fontSize: 15, 
         color:'#fff',
         fontFamily: 'Georgia',
-        left : 25,
+
 
     },
     subtitlecontainer: {
         width:'90%',
         alignItems:'left',
-        top:-132,
+
+
     }
 })
