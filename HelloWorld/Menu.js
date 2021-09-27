@@ -36,9 +36,13 @@ export default function Login(props) {
     </Pressable>
     <Text style={styles.sentencestext}>Sentences</Text>
     </View>
- 
-
-
+    {/*Questions*/}
+    <View style={styles.questions}>
+    <Pressable style={styles.questionscontainer} onPress={() => { props.changeView('Welcome'); } }>
+       <View style={styles.questionsimg}> <img src={require('./Pictures/questionsicon.png')} /></View>
+    </Pressable>
+    <Text style={styles.questionstext}>Questions</Text>
+    </View>
     </View>
 
   );
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#9EA4B2',
         width: 69,
         length: 59,
-        top:-250
+        top:-130,
 
     },
    
@@ -67,14 +71,15 @@ const styles = StyleSheet.create({
     profileimg: {
         width:35,
         height:35,
-        top: -300,
+        top: -164,
         left:130,
     },
+
 
     Welcomecontainer: {
         width:'90%',
         alignItems:'left',
-        top:-230,
+        top:-140,
       },
 
   
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color:'#fff',
         fontFamily: 'Georgia',
-        left  : 25,
+        left: 25,
 
   
       },
@@ -99,25 +104,32 @@ const styles = StyleSheet.create({
           width:62,
           height:84,
           color:'#000',
-          top:-180,
-          left:-130
+          left:-130,
+          top:-110,
 
       },
       phrases: {
         width:62,
         height:84,
         color:'#000',
-        top:-264,
-        left:-40
+        top:-194,
+        left:-50,
 
     },
     sentences: {
         width:62,
         height:84,
         color:'#000',
-        top:0,
-        left:-40
+        top: -278,
+        left:30,
+    },
 
+    questions: {
+        width:62,
+        height:84,
+        color:'#000',
+        top: -362,
+        left:110,
     },
 
       Wordcontainter: {
@@ -145,6 +157,15 @@ const styles = StyleSheet.create({
 
     },
 
+    questionscontainer: {
+        width:62,
+        height:64,
+        borderRadius:10,
+        backgroundColor:'#fff',
+        alignItems:'center',
+
+    },
+
       Wordimg: {
           width:35,
           height:35,
@@ -157,6 +178,11 @@ const styles = StyleSheet.create({
         top:15,
     },
     sentencesimg: {
+        width:35,
+        height:35,
+        top:15,
+    },
+    questionsimg: {
         width:35,
         height:35,
         top:15,
@@ -183,17 +209,23 @@ const styles = StyleSheet.create({
         textAlign:'center',
         paddingTopWidth:15,
     },
-    subtitle: {
-        fontSize: 15,
-        top : -300,
+    questionstext: {
+        fontSize: 12,
         color:'#fff',
         fontFamily: 'Georgia',
-        left  : 25,
+        textAlign:'center',
+        paddingTopWidth:15,
+    },
+    subtitle: {
+        fontSize: 15, 
+        color:'#fff',
+        fontFamily: 'Georgia',
+        left : 25,
 
     },
     subtitlecontainer: {
         width:'90%',
         alignItems:'left',
-        top:-217,
+        top:-132,
     }
 })
