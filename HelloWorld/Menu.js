@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,Button, Text, View, TextInput, Pressable, Image} from 'react-native';
+import { StyleSheet, Button, Text, View, TextInput, Pressable, Image} from 'react-native';
 import React, { useState } from 'react';
 
 
@@ -9,7 +9,7 @@ export default function Login(props) {
   return (
     <View style={styles.container}>
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
-    <Pressable style={styles.buttonprofile} onPress={() => { props.changeView('Welcome'); } }>
+    <Pressable style={styles.buttonprofile} onPress={() => { props.changeView('Stats'); } }>
        <View>
             <Image style={styles.img} source={require('./Pictures/Profilepic.jpg')} />
         </View>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet,Button,TouchableOpacity, Text, View, Font} from 'react-native';
 import Login from './Login';
 import Menu from './Menu';
+import Stats from './Stats';
 
 
 export default function App() {
@@ -39,6 +40,12 @@ export default function App() {
     return(<Menu changeView = {setView}>
     </Menu>)
   }
+
+  if (currentView == 'Stats'){
+    return(<Stats changeView = {setView}>
+    </Stats>)
+  }
+
   }
 
   
