@@ -43,7 +43,7 @@ export default function Login(props) {
     {/*Questions*/}
     <View style={styles.questions}>
     <Pressable style={styles.questionscontainer} onPress={() => { props.changeView('Welcome'); } }>
-       <View style={styles.questionsimg}> <img src={require('./Pictures/questionsicon.png')} /></View>
+       <View style={styles.questionsimg}> <img src={require('./Pictures/questionicon1.png')} /></View>
     </Pressable>
     <Text style={styles.questionstext}>Questions</Text>
     </View>
@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#9EA4B2',
         alignItems: 'center',
-        justifyContent:'flex-end',
+        justifyContent:'flex-start',
     },
 
     image: {
         backgroundColor:'#9EA4B2',
         width: 69,
         length: 59,
-        top: '7%',
+        top: '6%',
         position:'absolute',
 
     },
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         height: 35,
         left:'80%',
         position:'absolute',
-        top:'10%',
+        top:'8%',
     },
 
     profileimg: {
@@ -93,7 +93,10 @@ const styles = StyleSheet.create({
 
     contentcontainer:{
         width:'85%',
-        height:'80%',
+        height:'20%',
+        position:'absolute',
+        top:'18%',
+        
     },
 
     Welcomecontainer: {
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
     subtitlecontainer: {
         width:'90%',
         alignItems:'left',
+    },
 
 
-    }
 })
