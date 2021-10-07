@@ -4,6 +4,7 @@ import { StyleSheet,Button,TouchableOpacity, Text, View, Font} from 'react-nativ
 import Login from './Login';
 import Menu from './Menu';
 import Stats from './Stats';
+import Words from './Words';
 
 
 export default function App() {
@@ -44,6 +45,11 @@ export default function App() {
   if (currentView == 'Stats'){
     return(<Stats changeView = {setView}>
     </Stats>)
+  }
+
+  if (currentView == 'Words'){
+    return(<Words changeView = {setView}>
+    </Words>)
   }
 
   }

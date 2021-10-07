@@ -20,7 +20,7 @@ export default function Login(props) {
     {/*WORDS*/}
     <View style={styles.buttonscontainer}>
     <View style={styles.Words}>
-    <Pressable style={styles.Wordcontainter} onPress={() => { props.changeView('Welcome'); } }>
+    <Pressable style={styles.Wordcontainter} onPress={() => { props.changeView('Words'); } }>
        <View style={styles.Wordimg}> <img src={require('./Pictures/Wordsicon.png')} /></View>
     </Pressable>
     <Text style={styles.wordtext}>Words</Text>
@@ -43,12 +43,15 @@ export default function Login(props) {
     {/*Questions*/}
     <View style={styles.questions}>
     <Pressable style={styles.questionscontainer} onPress={() => { props.changeView('Welcome'); } }>
-       <View style={styles.questionsimg}> <img src={require('./Pictures/questionicon1.png')} /></View>
+       <View style={styles.questionsimg}> <img src={require('./Pictures/questionsicon.png')} /></View>
     </Pressable>
     <Text style={styles.questionstext}>Questions</Text>
     </View>
+   
     </View>
+    
     </View>
+    <View style={styles.menuimg}> <img src={require('./Pictures/Menupic.png')} /></View>
     </View>
 
   );
@@ -76,6 +79,12 @@ const styles = StyleSheet.create({
         borderRadius:20,
     },
     
+    menuimg: {
+        height:'60%',
+        width:'100%',
+        top:'40%',
+    },
+
     buttonprofile: {
         width:35,
         height: 35,
