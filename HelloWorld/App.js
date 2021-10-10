@@ -7,6 +7,7 @@ import Stats from './Stats';
 import Words from './Words';
 
 
+
 export default function App() {
   const [currentView,setView]  = useState('Welcome');
   if (currentView == "Welcome"){

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 
 
-export default function Login(props) {
+export default function Stats(props) {
   return (
     <View style={styles.container}>
     </View>

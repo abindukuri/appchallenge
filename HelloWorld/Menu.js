@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 
 
-export default function Login(props) {
+export default function Menu(props) {
   return (
     <View style={styles.container}>
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
