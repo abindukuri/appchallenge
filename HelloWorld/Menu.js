@@ -28,7 +28,7 @@ export default function Menu(props) {
     {/*PHRASES*/}
 
     <View style={styles.phrases}>
-    <Pressable style={styles.phrasescontainer} onPress={() => { props.changeView('Welcome'); } }>
+    <Pressable style={styles.phrasescontainer} onPress={()=> {props.changeView('Phrases'); }}>
        <View style={styles.phrasesimg}> <img src={require('./Pictures/phrasesicon.png')} /></View>
     </Pressable>
     <Text style={styles.phrasestext}>Phrases</Text>

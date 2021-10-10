@@ -5,6 +5,8 @@ import Login from './Login';
 import Menu from './Menu';
 import Stats from './Stats';
 import Words from './Words';
+import Phrases from './Phrases';
+
 
 
 
@@ -51,6 +53,10 @@ export default function App() {
   if (currentView == 'Words'){
     return(<Words changeView = {setView}>
     </Words>)
+  }
+  if (currentView == 'Phrases'){
+    return(<Phrases changeView = {setView}>
+    </Phrases>)
   }
 
   }
