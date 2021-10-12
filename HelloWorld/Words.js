@@ -1,59 +1,69 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Button, Text, View, TextInput, Pressable, Image} from 'react-native';
-import React, { Component, useState } from 'react';
-import AudioRecord from 'react-native-live-audio-stream';
+import React, { useState, useEffect } from 'react';
 
 
-export default class Words extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        recording:false,
-        audiofile:null,
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition
+const mic = new SpeechRecognition()
+
+mic.continuous = true
+mic.interimResults = true
+mic.lang = 'en-US'
+
+export default function Words(props) {
+  const [isListening, setIsListening] = useState(false);
+  const [note, setNote] = useState(null);
+
+  useEffect(() => {
+    handleListen()
+  }, [isListening]);
+
+  const handleListen = () => {
+    if (isListening) {
+      mic.start()
+      mic.onend = () => {
+        console.log('continue..')
+        mic.start()
+      }
+    } else {
+      mic.stop()
+      mic.onend = () => {
+        console.log('Stopped Mic on Click')
+      }
     }
-    this.record = this.record.bind(this);
+    mic.onstart = () => {
+      console.log('Mics on')
+    }
+
+    mic.onresult = event => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('')
+      console.log(transcript)
+      setNote(transcript)
+      mic.onerror = event => {
+        console.log(event.error)
+      }
+    }
   }
-  async componentDidMount(){
-    const options = {
-        sampleRate: 32000,  // default is 44100 but 32000 is adequate for accurate voice recognition
-        channels: 1,        // 1 or 2, default 1
-        bitsPerSample: 16,  // 8 or 16, default 16
-        bufferSize: 4096    // default is 2048
-    };
-    AudioRecord.init(options);
-  }
-  
-  async record(){
-    if (this.state.recording == false){
-        AudioRecord.start();
-        this.setState({recording:true})
-    }
-    else{
-        this.setState({recording:false})
-        let audiofile = await AudioRecord.stop();
-        console.log(audiofile); 
-    }
-}
-    render() {
-      return(
+
+  return (
     <View style={styles.container}>
     <Pressable style={styles.logo} onPress={() => { props.changeView('Menu'); } }>
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
     </Pressable>
     <View style={styles.Wordsimage}><img src={require('./Pictures/Wordspic.png')} /></View>
-    <Pressable style={styles.logo} onPress={this.record}>
-    <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
+    <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>
+    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Play.png')} /></View>
     </Pressable>
-    
+    <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
+
     </View>
 
-  );}
+  );
 }
-
-
-
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -65,6 +75,7 @@ const styles = StyleSheet.create({
 
     logo: {
         top:'6%',
+        position:'absolute',
     },
 
     image: {
@@ -77,7 +88,23 @@ const styles = StyleSheet.create({
     Wordsimage: {
         width:'100%',
         height:'50%',
-        top: '7%',
-    }
+        top: '15%',
+    },
 
-})
+    textcontainer: {
+      width:'100%',
+      top:'10%',
+      alignItems:'center',
+    },
+
+    record: {
+      top:'30%',
+
+    },
+
+    textoutput: {
+      color:'#fff',
+    },
+
+});
+
