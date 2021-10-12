@@ -5,12 +5,9 @@ import Login from './Login';
 import Menu from './Menu';
 import Stats from './Stats';
 import Words from './Words';
-<<<<<<< HEAD
 import Speechrec from './Speechrec'
-=======
 import Phrases from './Phrases';
 
->>>>>>> 6f8d15361a927ca9c66d1857e8c31547053d99e2
 
 
 
@@ -63,11 +60,11 @@ export default function App() {
     </Phrases>)
   }
 
+
   if (currentView == 'Speechrec'){
     return(<Speechrec changeView = {setView}>
     </Speechrec>)
   } 
-
   }
 
   
