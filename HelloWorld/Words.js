@@ -14,6 +14,7 @@ mic.lang = 'en-US'
 export default function Words(props) {
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState(null);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     handleListen()
@@ -43,11 +44,13 @@ export default function Words(props) {
         .join('')
       console.log(transcript)
       setNote(transcript)
+      
       mic.onerror = event => {
         console.log(event.error)
       }
     }
   }
+
 
   return (
     <View style={styles.container}>
@@ -56,14 +59,19 @@ export default function Words(props) {
     </Pressable>
     <View style={styles.Wordsimage}><img src={require('./Pictures/Wordspic.png')} /></View>
     <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>
-    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Play.png')} /></View>
+    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Play.png'), require('./Pictures/Polygon 1.png')} /></View>
     </Pressable>
     <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
-
+    <View style={styles.resultscontainer}><Text style={styles.resultsoutput}>{result}</Text></View>
     </View>
 
   );
 }
+
+
+
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
