@@ -13,8 +13,9 @@ mic.lang = 'en-US'
 
 export default function Words(props) {
   const [isListening, setIsListening] = useState(false);
-  const [note, setNote] = useState(null);
-  const [result, setResult] = useState(null);
+  const [note, setNote] = useState('\n');
+  const [result, setResult] = useState('\n');
+  const [correctCount, setCorrectCount] = useState(0);
 
   useEffect(() => {
     handleListen()
@@ -38,13 +39,21 @@ export default function Words(props) {
     }
 
     mic.onresult = event => {
-      const transcript = Array.from(event.results)
+     let transcript = Array.from(event.results)
         .map(result => result[0])
         .map(result => result.transcript)
         .join('')
+        .split(' ').pop()
       console.log(transcript)
       setNote(transcript)
-      
+      if (transcript.includes("shallow")){
+        setResult('Correct')
+        setCorrectCount(correctCount + 1)
+        setIsListening(false)
+      }
+      else{
+        setResult('Try Again')
+      }
       mic.onerror = event => {
         console.log(event.error)
       }
@@ -58,11 +67,15 @@ export default function Words(props) {
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
     </Pressable>
     <View style={styles.Wordsimage}><img src={require('./Pictures/Wordspic.png')} /></View>
-    <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>
-    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Play.png'), require('./Pictures/Polygon 1.png')} /></View>
-    </Pressable>
     <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
-    <View style={styles.resultscontainer}><Text style={styles.resultsoutput}>{result}</Text></View>
+    <View style={styles.resultscontainer}><Text style={result == 'Correct' ? styles.resultscorrect : styles.resultsoutput}>{result}</Text></View>
+    <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>
+    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Polygon 1.png')} /></View>
+    </Pressable>
+    <View style={styles.correctimage}>
+      {correctCount > 4 &&
+      <img src={require('./Pictures/correct.png')} />}
+    </View>
     </View>
 
   );
@@ -82,36 +95,63 @@ const styles = StyleSheet.create({
 
 
     logo: {
-        top:'6%',
-        position:'absolute',
+      marginTop:'6%',
+
     },
 
     image: {
         backgroundColor:'#9EA4B2',
-        width: 69,
-        length: 59, 
+        width: 59,
+        length: 49, 
 
     },
 
     Wordsimage: {
         width:'100%',
         height:'50%',
-        top: '15%',
+        marginBottom:50,
+
     },
 
     textcontainer: {
       width:'100%',
-      top:'10%',
+
       alignItems:'center',
     },
 
-    record: {
-      top:'30%',
+    resultscontainer:{
+      width:'100%',
+      marginTop:20,
+      alignItems:'center',
+    },
 
+    correctimage:{
+      width:'10%',
+      length:'10%',      
+    },
+
+
+    record: {
+      marginTop:40,
     },
 
     textoutput: {
       color:'#fff',
+      fontSize:20,
+      fontWeight:'bold',
+    },
+
+    resultsoutput: {
+      color:'#fff',
+      fontSize:20,
+
+
+    },
+
+    resultscorrect: {
+      color:'#1f4d1c',
+      fontSize:20,
+
     },
 
 });
