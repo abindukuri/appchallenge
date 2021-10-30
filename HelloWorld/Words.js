@@ -126,8 +126,9 @@ const styles = StyleSheet.create({
     },
 
     correctimage:{
-      width:'10%',
-      length:'10%',      
+      width:'20%',
+      length:'20%',
+      marginTop:30,      
     },
 
 
