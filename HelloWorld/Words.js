@@ -73,7 +73,7 @@ export default function Words(props) {
     <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Polygon 1.png')} /></View>
     </Pressable>
     <View style={styles.correctimage}>
-      {correctCount > 4 &&
+      {correctCount > 8 &&
       <img src={require('./Pictures/correct.png')} />}
     </View>
     </View>
