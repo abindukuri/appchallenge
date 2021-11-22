@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { View } from 'react-native';
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition
@@ -52,7 +53,7 @@ function Speechrec() {
   }
 
   return(
-        <>
+    <>
           <h1>Voice Notes</h1>
           <div className="container">
             <div className="box">
@@ -73,7 +74,7 @@ function Speechrec() {
               ))}
             </div>
           </div>
-        </>
+          </>
       )
 }
 export default Speechrec

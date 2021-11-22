@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet,Button,TouchableOpacity, Text, View, Font} from 'react-native';
+import { StyleSheet,Button,TouchableOpacity, Text, View, Font, Image} from 'react-native';
 import Login from './Login';
 import Menu from './Menu';
 import Stats from './Stats';
@@ -17,8 +17,12 @@ export default function App() {
     return (
       <View style={styles.container}> 
         <StatusBar style="auto" />
-        <View style  = {styles.container1}> <img src={require('./Pictures/logonew.png')} /> 
-        <View style  = {styles.container2}> <img src={require('./Pictures/leaf.png')} />
+        <Image
+          style={styles.logonew}
+          source={require('./Pictures/logonew.png')}
+        />
+        {/* <View style  = {styles.container1}> <img src={require('./Pictures/logonew.png')} /> 
+        <View style  = {styles.container2}> <img src={require('./Pictures/leaf.png')} /> */}
         
         <View style = {styles.button}>
           <Button
@@ -30,8 +34,8 @@ export default function App() {
         </View>
         
   </View>
-      </View>
-      </View>
+      // </View>
+      // </View>
       
   
     );
@@ -73,8 +77,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#9EA4B2',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'top',
+    // justifyContent: 'center',
   },
   container1:{  
     flex:3,
@@ -84,7 +88,16 @@ const styles = StyleSheet.create({
   container2:{
   flex:1,
   top:125,
+
 },
+
+logonew:{
+  width:'100%',
+  height:'42%',
+  resizeMode:'contain',
+  marginTop:'10%',
+},
+
 button:{
   top:-250,
   left: 127.5,
