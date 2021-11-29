@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Button, Text, View, TextInput, Pressable, Image} from 'react-native';
 import React, { useState, useEffect } from 'react';
+import wordlist from './wordlist.json';
 
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognition()
+const words  = Object.keys(wordlist.words);
 
 mic.continuous = true
 mic.interimResults = true
@@ -16,6 +18,8 @@ export default function Words(props) {
   const [note, setNote] = useState('\n');
   const [result, setResult] = useState('\n');
   const [correctCount, setCorrectCount] = useState(0);
+  const [currentWord , setCurrentWord] = useState(words[Math.floor(Math.random()*words.length)]);
+
 
   useEffect(() => {
     handleListen()
@@ -46,7 +50,7 @@ export default function Words(props) {
         .split(' ').pop()
       console.log(transcript)
       setNote(transcript)
-      if (transcript.includes("shallow")){
+      if (transcript.includes(currentWord)){
         setResult('Correct')
         setCorrectCount(correctCount + 1)
         setIsListening(false)
@@ -67,6 +71,7 @@ export default function Words(props) {
     <View style={styles.image}><img src={require('./Pictures/logosmall.png')} /></View>
     </Pressable>
     <View style={styles.Wordsimage}><img src={require('./Pictures/Wordspic.png')} /></View>
+    <View> <Text> {currentWord} </Text></View>
     <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
     <View style={styles.resultscontainer}><Text style={result == 'Correct' ? styles.resultscorrect : styles.resultsoutput}>{result}</Text></View>
     <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>

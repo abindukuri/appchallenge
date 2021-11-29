@@ -25,7 +25,7 @@ export default function Menu(props) {
     </Pressable>
     <Text style={styles.wordtext}>Words</Text>
     </View>
-    {/*PHRASES*/}
+    {/*PHRASES*/}   
 
     <View style={styles.phrases}>
     <Pressable style={styles.phrasescontainer} onPress={()=> {props.changeView('Phrases'); }}>

@@ -7,6 +7,7 @@ import Stats from './Stats';
 import Words from './Words';
 import Speechrec from './Speechrec'
 import Phrases from './Phrases';
+import wordlist from './wordlist.json';
 
 
 
@@ -56,7 +57,7 @@ export default function App() {
   }
 
   if (currentView == 'Words'){
-    return(<Words changeView = {setView}>
+    return(<Words changeView = {setView} word = {Object.keys(wordlist.words)}>
     </Words>)
   }
   if (currentView == 'Phrases'){
