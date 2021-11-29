@@ -1,0 +1,42 @@
+{
+    "phonemes":
+    {
+        "consonants":
+        [
+         "b","d","f","g","h","j","k","l","m" ,"n","p","r","s","t","v","w","y","z","th1","th2" , "ng", "sh", "ch","zh","wh"
+        ],
+        "vowels":
+        [
+            "shortA" , "longA", "shortE", "longE", "shortI", "longI" , "shortO", "longO", " shortU", "longU","oo","ōō","ow", "oy","ar","ār", "ir","or","ur"
+        ]
+    },
+
+    "words":
+    {
+        "big":
+        [
+            "b", "shortI","g"
+        ],
+        "rubber":
+        [
+            "b","shortU", "r","ur"
+        ],
+        "dog":
+        [
+            "d","shortO","g"
+        ]
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+}
