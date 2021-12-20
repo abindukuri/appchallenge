@@ -20,6 +20,13 @@ export default function Words(props) {
   const [correctCount, setCorrectCount] = useState(0);
   const [currentWord , setCurrentWord] = useState(words[Math.floor(Math.random()*words.length)]);
 
+  function reset(previous){
+    setCorrectCount(0);
+    setIsListening(false);
+    setNote('\n');
+    setResult('\n');
+    setCurrentWord(words[Math.floor(Math.random()*words.length)]);
+  }  
 
   useEffect(() => {
     handleListen()
@@ -47,10 +54,10 @@ export default function Words(props) {
         .map(result => result[0])
         .map(result => result.transcript)
         .join('')
-        .split(' ').pop()
+        .split(' ').pop().toLowerCase()
       console.log(transcript)
       setNote(transcript)
-      if (transcript.includes(currentWord)){
+      if (transcript.includes(currentWord.toLowerCase())){
         setResult('Correct')
         setCorrectCount(correctCount + 1)
         setIsListening(false)
@@ -74,7 +81,7 @@ export default function Words(props) {
     <View> <Text> {currentWord} </Text></View>
     <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
     <View style={styles.resultscontainer}><Text style={result == 'Correct' ? styles.resultscorrect : styles.resultsoutput}>{result}</Text></View>
-    <Pressable style={styles.record} onPress={() => setIsListening(prevState => !prevState)}>
+    <Pressable style={styles.record} onPress={(correctCount > 8) ? ()=> reset(null): () => setIsListening(prevState => !prevState)}>
     <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Polygon 1.png')} /></View>
     </Pressable>
     <View style={styles.correctimage}>
@@ -87,7 +94,13 @@ export default function Words(props) {
 }
 
 
-
+function reset(previous){
+  setCorrectCount(0);
+  setIsListening(false);
+  setNote('\n');
+  setResult('\n');
+  setCurrentWord(words[Math.floor(Math.random()*words.length)]);
+}
 
 
 const styles = StyleSheet.create({
