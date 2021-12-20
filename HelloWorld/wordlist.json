@@ -24,7 +24,29 @@
         "dog":
         [
             "d","shortO","g"
-        ]
+        ],
+        "Actor":
+        [
+            "shortA", "ch", "t", "or"
+        ],
+        "Baby":
+        [
+            "b", "longA","b","longE"
+        ],
+        "Climate":
+        [
+            "ch","l","shortI","m","shortA","t"
+        ],
+        "Ribbon":
+        [
+            "r","longI","b,b","shortO","n"
+        ],
+         "Nation":
+         [
+             "n","shortA","sh","n"
+         ]
+
+
 
 
 
