@@ -7,7 +7,7 @@ import wordlist from './wordlist.json';
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognition()
-const words  = Object.keys(wordlist.words);
+let words  = Object.keys(wordlist.words);
 
 mic.continuous = true
 mic.interimResults = true
@@ -18,15 +18,18 @@ export default function Words(props) {
   const [note, setNote] = useState('\n');
   const [result, setResult] = useState('\n');
   const [correctCount, setCorrectCount] = useState(0);
-  const [currentWord , setCurrentWord] = useState(words[Math.floor(Math.random()*words.length)]);
+  const [currentWord , setCurrentWord] = useState(words.splice(Math.floor(Math.random()*words.length),1)[0]);
+  const [wordsMastered, setWordsMastered] = useState(new Array());
 
-  function reset(previous){
+  function reset(words){
+    setWordsMastered(wordsMastered.concat(currentWord));
+    console.log(words);
     setCorrectCount(0);
     setIsListening(false);
     setNote('\n');
     setResult('\n');
-    setCurrentWord(words[Math.floor(Math.random()*words.length)]);
-  }  
+    setCurrentWord(words.splice(Math.floor(Math.random()*words.length),1)[0]);
+  }
 
   useEffect(() => {
     handleListen()
@@ -81,8 +84,8 @@ export default function Words(props) {
     <View> <Text> {currentWord} </Text></View>
     <View style={styles.textcontainer}><Text style={styles.textoutput}>{note}</Text></View>
     <View style={styles.resultscontainer}><Text style={result == 'Correct' ? styles.resultscorrect : styles.resultsoutput}>{result}</Text></View>
-    <Pressable style={styles.record} onPress={(correctCount > 8) ? ()=> reset(null): () => setIsListening(prevState => !prevState)}>
-    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') : require('./Pictures/Polygon 1.png')} /></View>
+    <Pressable style={styles.record} onPress={(correctCount > 8) ? ()=> reset(words): () => setIsListening(prevState => !prevState)}>
+    <View style={styles.image}><img src={isListening ? require('./Pictures/Stop.png') :(correctCount > 8)? require('./Pictures/Arrow.png'): require('./Pictures/Polygon 1.png')} /></View>
     </Pressable>
     <View style={styles.correctimage}>
       {correctCount > 8 &&
@@ -93,14 +96,6 @@ export default function Words(props) {
   );
 }
 
-
-function reset(previous){
-  setCorrectCount(0);
-  setIsListening(false);
-  setNote('\n');
-  setResult('\n');
-  setCurrentWord(words[Math.floor(Math.random()*words.length)]);
-}
 
 
 const styles = StyleSheet.create({
